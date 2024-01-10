@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_marginTop="10dp"
+    android:layout_marginRight="15dp"
+    android:layout_marginLeft="15dp"
+    android:layout_marginBottom="14dp"
+    app:cardCornerRadius="12dp"
+    app:cardElevation="8dp"
+    android:id="@+id/card_hasil_penyakit"
+    app:cardBackgroundColor="@color/cardview_light_background">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:layout_marginBottom="12dp"
+            android:layout_marginLeft="16dp"
+            android:layout_marginRight="16dp"
+            android:orientation="vertical">
+            <TextView
+                android:id="@+id/tv_penyakit"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Nama Penyakit"
+                android:textColor="@color/black"
+                android:textSize="20sp"
+                android:textStyle="bold"/>
+            <TextView
+                android:id="@+id/tv_tanggal_terjangkit"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Tanggal Terjangkit Penyakit"
+                android:textColor="@color/black"
+                android:textSize="20sp"/>
+            <TextView
+                android:id="@+id/tv_gangguan_telinga"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Gangguan Telinga"
+                android:textColor="@color/black"
+                android:textSize="20sp"/>
+            <TextView
+                android:id="@+id/tv_gangguan_hidung"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Gangguan Hidung"
+                android:textColor="@color/black"
+                android:textSize="20sp"/>
+            <TextView
+                android:id="@+id/tv_gangguan_tenggorokan"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Gangguan Tenggorokan"
+                android:textColor="@color/black"
+                android:textSize="20sp"/>
+            <TextView
+                android:id="@+id/tv_obat"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Obat-obatan"
+                android:textColor="@color/black"
+                android:textSize="20sp"/>
+        </LinearLayout>
+        <ImageView
+            android:id="@+id/btn_hapus"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:src="@drawable/ic_delete"
+            android:layout_alignParentRight="true"
+            android:layout_centerInParent="false"
+            android:layout_marginRight="16dp"
+            android:layout_marginTop="16dp"/>
+    </RelativeLayout>
+
+
+
+</androidx.cardview.widget.CardView>

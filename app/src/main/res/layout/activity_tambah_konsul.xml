@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".TambahActivityKonsul">
+
+    <EditText
+        android:id="@+id/edKonsulKe"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Konsultasi Ke - (Inputkan dengan huruf)"
+        android:importantForAutofill="no"
+        android:layout_marginTop="20dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
+        android:layout_marginBottom="10dp"
+        android:padding="16dp"/>
+    <EditText
+        android:id="@+id/edTanggal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Tanggal Konsultasi (dd/mm/yyyy)"
+        android:importantForAutofill="no"
+        android:layout_marginTop="5dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
+        android:layout_marginBottom="10dp"
+        android:padding="16dp"/>
+    <EditText
+        android:id="@+id/edDokter"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Masukkan Nama Dokter"
+        android:importantForAutofill="no"
+        android:layout_marginTop="5dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
+        android:layout_marginBottom="10dp"
+        android:padding="16dp"/>
+    <EditText
+        android:id="@+id/edKlinik"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Klinik/Rumah Sakit"
+        android:importantForAutofill="no"
+        android:layout_marginTop="5dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
+        android:layout_marginBottom="10dp"
+        android:padding="16dp"/>
+    <EditText
+        android:id="@+id/edKeluhan"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Masukkan Keluhan"
+        android:importantForAutofill="no"
+        android:layout_marginTop="5dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
+        android:layout_marginBottom="10dp"
+        android:padding="16dp"/>
+    <EditText
+        android:id="@+id/edDiagnosa"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Masukkan Diagnosa"
+        android:importantForAutofill="no"
+        android:layout_marginTop="5dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
+        android:layout_marginBottom="10dp"
+        android:padding="16dp"/>
+    <Button
+        android:id="@+id/btn_simpan"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
+        android:layout_marginBottom="10dp"
+        android:text="Add"
+        android:textSize="18sp"/>
+
+
+</LinearLayout>

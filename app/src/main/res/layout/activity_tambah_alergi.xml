@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".TambahActivityAlergi">
+
+    <EditText
+        android:id="@+id/edAlergi"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Nama Alergi"
+        android:importantForAutofill="no"
+        android:layout_marginTop="20dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
+        android:layout_marginBottom="10dp"
+        android:padding="16dp"/>
+    <EditText
+        android:id="@+id/edTanggalTerjangkit"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Tanggal Terjangkit (dd/mm/yyyy)"
+        android:importantForAutofill="no"
+        android:layout_marginTop="5dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
+        android:layout_marginBottom="10dp"
+        android:padding="16dp"/>
+    <EditText
+        android:id="@+id/edBahanAlergen"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Bahan Alergen"
+        android:importantForAutofill="no"
+        android:layout_marginTop="5dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
+        android:layout_marginBottom="10dp"
+        android:padding="16dp"/>
+    <EditText
+        android:id="@+id/edJenisAlergi"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Jenis Alergi"
+        android:importantForAutofill="no"
+        android:layout_marginTop="5dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
+        android:layout_marginBottom="10dp"
+        android:padding="16dp"/>
+    <EditText
+        android:id="@+id/edGejalaAlergi"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Gejala Alergi"
+        android:importantForAutofill="no"
+        android:layout_marginTop="5dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
+        android:layout_marginBottom="10dp"
+        android:padding="16dp"/>
+    <EditText
+        android:id="@+id/edReaksiAlergi"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Reaksi Alergi"
+        android:importantForAutofill="no"
+        android:layout_marginTop="5dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
+        android:layout_marginBottom="10dp"
+        android:padding="16dp"/>
+    <Button
+        android:id="@+id/btn_simpan"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
+        android:layout_marginBottom="10dp"
+        android:text="Add"
+        android:textSize="18sp"/>
+
+
+</LinearLayout>

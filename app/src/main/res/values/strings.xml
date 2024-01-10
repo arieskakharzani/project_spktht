@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">project_spktht</string>
+    <string name="userDisplayPicture">Loading</string>
+    <string name="loading">Loading</string>
+    <string name="add_content">Add</string>
+    <string name="title_activity_maps">MapsActivity</string>
+</resources>

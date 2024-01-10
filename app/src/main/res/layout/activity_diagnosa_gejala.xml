@@ -1,0 +1,185 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        tools:context=".DiagnosaGejalaActivity">
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:src="@drawable/ic_spktht" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Gejala-gejala THT \nPilih yang Sesuai"
+            android:textAlignment="center"
+            android:textColor="#333131"
+            android:textSize="20sp" />
+
+        <CheckBox
+            android:id="@+id/cx_gangguanSaatBerbicara"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:onClick="onClickChecked"
+            android:text="Gangguan Saat Berbicara" />
+
+        <CheckBox
+            android:id="@+id/cx_hidungTersumbat"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:onClick="onClickChecked"
+            android:text="Hidung Tersumbat" />
+
+        <CheckBox
+            android:id="@+id/cx_batukParah"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:onClick="onClickChecked"
+            android:text="Batuk Parah Terus Menerus" />
+
+        <CheckBox
+            android:id="@+id/cx_sakitTenggorokan"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:onClick="onClickChecked"
+            android:text="Sakit Tenggorokan" />
+
+        <CheckBox
+            android:id="@+id/cx_nyeriTenggorokan"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:onClick="onClickChecked"
+            android:text="Nyeri Tenggorokan" />
+
+        <CheckBox
+            android:onClick="onClickChecked"
+            android:id="@+id/cx_sakitTelinga"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Sakit pada Telinga " />
+
+        <CheckBox
+            android:onClick="onClickChecked"
+            android:id="@+id/cx_mulutBau"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Mulut Berbau Tidak Sedap" />
+
+        <CheckBox
+            android:onClick="onClickChecked"
+            android:id="@+id/cx_lemas"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Lemas dan Tidak Bertenaga" />
+
+        <CheckBox
+            android:onClick="onClickChecked"
+            android:id="@+id/cx_nyeriUluHati"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Nyeri Ulu Hati" />
+
+        <CheckBox
+            android:onClick="onClickChecked"
+            android:id="@+id/cx_benjolan"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Benjolan di Leher" />
+
+        <CheckBox
+            android:onClick="onClickChecked"
+            android:id="@+id/cx_kehilanganSeleraMakan"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Kehilangan Selera Makan" />
+
+        <CheckBox
+            android:onClick="onClickChecked"
+            android:id="@+id/cx_kesulitanBernafas"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Kesulitan Bernafas" />
+
+        <CheckBox
+            android:onClick="onClickChecked"
+            android:id="@+id/cx_mulutPahit"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Mulut Terasa Pahit" />
+
+        <CheckBox
+            android:onClick="onClickChecked"
+            android:id="@+id/cx_demamBatuk"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Demam disertai Batuk" />
+
+        <CheckBox
+            android:onClick="onClickChecked"
+            android:id="@+id/cx_seringMelamun"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Sering Melamaun" />
+
+        <CheckBox
+            android:id="@+id/cx_sulitMengikutiArahan"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:onClick="onClickChecked"
+            android:text="Sulit Mengikuti Arahan" />
+
+        <CheckBox
+            android:onClick="onClickChecked"
+            android:id="@+id/cx_sulitMendengar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Sulit Mendengar" />
+
+        <CheckBox
+            android:onClick="onClickChecked"
+            android:id="@+id/cx_pilek"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Pilek" />
+
+        <CheckBox
+            android:onClick="onClickChecked"
+            android:id="@+id/cx_dahak"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Dahak di Tenggorokan" />
+
+        <CheckBox
+            android:onClick="onClickChecked"
+            android:id="@+id/cx_suhuBadanPanasDingin"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Suhu Badan Panas Dingin" />
+
+        <Button
+            android:id="@+id/btn_diagnosa"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Cek Diagnosa" />
+
+        <TextView
+            android:textSize="25sp"
+            android:textStyle="bold"
+            android:id="@+id/tv_result"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Result"
+            android:textAlignment="center"
+            android:layout_marginBottom="20dp"/>
+
+    </LinearLayout>
+</ScrollView>
