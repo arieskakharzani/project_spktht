@@ -1,185 +1,355 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:scrollbars="vertical"
+    android:padding="10dp"
+    tools:context=".DiagnosaGejalaActivity">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical"
-        tools:context=".DiagnosaGejalaActivity">
+        android:orientation="vertical">
 
         <ImageView
+            android:id="@+id/imageView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:src="@drawable/ic_spktht" />
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Gejala-gejala THT \nPilih yang Sesuai"
-            android:textAlignment="center"
-            android:textColor="#333131"
-            android:textSize="20sp" />
+            app:srcCompat="@drawable/ic_spktht" />
 
         <CheckBox
-            android:id="@+id/cx_gangguanSaatBerbicara"
+            android:id="@+id/checkBox"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:onClick="onClickChecked"
-            android:text="Gangguan Saat Berbicara" />
+            android:text="Batuk" />
 
-        <CheckBox
-            android:id="@+id/cx_hidungTersumbat"
+        <AutoCompleteTextView
+            android:id="@+id/autoCompleteTextView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:onClick="onClickChecked"
-            android:text="Hidung Tersumbat" />
+            android:textSize="20sp"
+            android:hint="Masukan Nilai Kepercayaan Gejala ini" />
 
         <CheckBox
-            android:id="@+id/cx_batukParah"
+            android:id="@+id/checkBox2"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:onClick="onClickChecked"
-            android:text="Batuk Parah Terus Menerus" />
+            android:text="Bersin" />
 
-        <CheckBox
-            android:id="@+id/cx_sakitTenggorokan"
+        <AutoCompleteTextView
+            android:id="@+id/autoCompleteTextView2"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:onClick="onClickChecked"
-            android:text="Sakit Tenggorokan" />
+            android:textSize="20sp"
+            android:hint="Masukan Nilai Kepercayaan Gejala ini" />
 
         <CheckBox
-            android:id="@+id/cx_nyeriTenggorokan"
+            android:id="@+id/checkBox3"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:onClick="onClickChecked"
-            android:text="Nyeri Tenggorokan" />
+            android:text="Dahak mengalir ditenggorokan" />
 
-        <CheckBox
-            android:onClick="onClickChecked"
-            android:id="@+id/cx_sakitTelinga"
+        <AutoCompleteTextView
+            android:id="@+id/autoCompleteTextView3"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Sakit pada Telinga " />
+            android:textSize="20sp"
+            android:hint="Masukan Nilai Kepercayaan Gejala ini" />
 
         <CheckBox
-            android:onClick="onClickChecked"
-            android:id="@+id/cx_mulutBau"
+            android:id="@+id/checkBox4"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Mulut Berbau Tidak Sedap" />
+            android:text="Demam" />
 
-        <CheckBox
-            android:onClick="onClickChecked"
-            android:id="@+id/cx_lemas"
+        <AutoCompleteTextView
+            android:id="@+id/autoCompleteTextView4"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Lemas dan Tidak Bertenaga" />
+            android:textSize="20sp"
+            android:hint="Masukan Nilai Kepercayaan Gejala ini" />
 
         <CheckBox
-            android:onClick="onClickChecked"
-            android:id="@+id/cx_nyeriUluHati"
+            android:id="@+id/checkBox5"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Nyeri Ulu Hati" />
+            android:text="Hidung mampet" />
 
-        <CheckBox
-            android:onClick="onClickChecked"
-            android:id="@+id/cx_benjolan"
+        <AutoCompleteTextView
+            android:id="@+id/autoCompleteTextView5"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Benjolan di Leher" />
+            android:textSize="20sp"
+            android:hint="Masukan Nilai Kepercayaan Gejala ini" />
 
         <CheckBox
-            android:onClick="onClickChecked"
-            android:id="@+id/cx_kehilanganSeleraMakan"
+            android:id="@+id/checkBox6"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Kehilangan Selera Makan" />
+            android:text="Hidung mampet pada bagian sebelah" />
 
-        <CheckBox
-            android:onClick="onClickChecked"
-            android:id="@+id/cx_kesulitanBernafas"
+        <AutoCompleteTextView
+            android:id="@+id/autoCompleteTextView6"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Kesulitan Bernafas" />
+            android:textSize="20sp"
+            android:hint="Masukan Nilai Kepercayaan Gejala ini" />
 
         <CheckBox
-            android:onClick="onClickChecked"
-            android:id="@+id/cx_mulutPahit"
+            android:id="@+id/checkBox7"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Mulut Terasa Pahit" />
+            android:text="Hidung mampet pada bagian sebelah secara bergantian" />
 
-        <CheckBox
-            android:onClick="onClickChecked"
-            android:id="@+id/cx_demamBatuk"
+        <AutoCompleteTextView
+            android:id="@+id/autoCompleteTextView7"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Demam disertai Batuk" />
+            android:textSize="20sp"
+            android:hint="Masukan Nilai Kepercayaan Gejala ini" />
 
         <CheckBox
-            android:onClick="onClickChecked"
-            android:id="@+id/cx_seringMelamun"
+            android:id="@+id/checkBox8"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Sering Melamaun" />
+            android:text="Ingus bau" />
 
-        <CheckBox
-            android:id="@+id/cx_sulitMengikutiArahan"
+        <AutoCompleteTextView
+            android:id="@+id/autoCompleteTextView8"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:onClick="onClickChecked"
-            android:text="Sulit Mengikuti Arahan" />
+            android:textSize="20sp"
+            android:hint="Masukan Nilai Kepercayaan Gejala ini" />
 
         <CheckBox
-            android:onClick="onClickChecked"
-            android:id="@+id/cx_sulitMendengar"
+            android:id="@+id/checkBox9"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Sulit Mendengar" />
+            android:text="Memiliki riwayat mengorek telinga" />
+
+        <AutoCompleteTextView
+            android:id="@+id/autoCompleteTextView9"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="20sp"
+            android:hint="Masukan Nilai Kepercayaan Gejala ini" />
 
         <CheckBox
-            android:onClick="onClickChecked"
-            android:id="@+id/cx_pilek"
+            android:id="@+id/checkBox10"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Penciuman berkurang" />
+
+        <AutoCompleteTextView
+            android:id="@+id/autoCompleteTextView10"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="20sp"
+            android:hint="Masukan Nilai Kepercayaan Gejala ini" />
+
+        <CheckBox
+            android:id="@+id/checkBox11"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Pendengaran berkurang" />
+
+        <AutoCompleteTextView
+            android:id="@+id/autoCompleteTextView11"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="20sp"
+            android:hint="Masukan Nilai Kepercayaan Gejala ini" />
+
+        <CheckBox
+            android:id="@+id/checkBox12"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Pilek encer dikedua hidung" />
+
+        <AutoCompleteTextView
+            android:id="@+id/autoCompleteTextView12"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="20sp"
+            android:hint="Masukan Nilai Kepercayaan Gejala ini" />
+
+        <CheckBox
+            android:id="@+id/checkBox13"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Pilek" />
 
-        <CheckBox
-            android:onClick="onClickChecked"
-            android:id="@+id/cx_dahak"
+        <AutoCompleteTextView
+            android:id="@+id/autoCompleteTextView13"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Dahak di Tenggorokan" />
+            android:textSize="20sp"
+            android:hint="Masukan Nilai Kepercayaan Gejala ini" />
 
         <CheckBox
-            android:onClick="onClickChecked"
-            android:id="@+id/cx_suhuBadanPanasDingin"
+            android:id="@+id/checkBox14"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Suhu Badan Panas Dingin" />
+            android:text="Sakit kepala" />
+
+        <AutoCompleteTextView
+            android:id="@+id/autoCompleteTextView14"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="20sp"
+            android:hint="Masukan Nilai Kepercayaan Gejala ini" />
+
+        <CheckBox
+            android:id="@+id/checkBox15"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Telinga berair selama 2 bulan atau lebih" />
+
+        <AutoCompleteTextView
+            android:id="@+id/autoCompleteTextView15"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="20sp"
+            android:hint="Masukan Nilai Kepercayaan Gejala ini" />
+
+        <CheckBox
+            android:id="@+id/checkBox16"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Telinga berair selama 2 bulan atau kurang" />
+
+        <AutoCompleteTextView
+            android:id="@+id/autoCompleteTextView16"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="20sp"
+            android:hint="Masukan Nilai Kepercayaan Gejala ini" />
+
+        <CheckBox
+            android:id="@+id/checkBox17"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Telinga berair bau selama 2 bulan atau lebih" />
+
+        <AutoCompleteTextView
+            android:id="@+id/autoCompleteTextView17"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="20sp"
+            android:hint="Masukan Nilai Kepercayaan Gejala ini" />
+
+        <CheckBox
+            android:id="@+id/checkBox18"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Telinga mampet" />
+
+        <AutoCompleteTextView
+            android:id="@+id/autoCompleteTextView18"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="20sp"
+            android:hint="Masukan Nilai Kepercayaan Gejala ini" />
+
+        <CheckBox
+            android:id="@+id/checkBox19"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Telinga gatal" />
+
+        <AutoCompleteTextView
+            android:id="@+id/autoCompleteTextView19"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="20sp"
+            android:hint="Masukan Nilai Kepercayaan Gejala ini" />
+
+        <CheckBox
+            android:id="@+id/checkBox20"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Telinga nyeri" />
+
+        <AutoCompleteTextView
+            android:id="@+id/autoCompleteTextView20"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="20sp"
+            android:hint="Masukan Nilai Kepercayaan Gejala ini" />
+
+        <CheckBox
+            android:id="@+id/checkBox21"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Tenggorokan Nyeri" />
+
+        <AutoCompleteTextView
+            android:id="@+id/autoCompleteTextView21"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="20sp"
+            android:hint="Masukan Nilai Kepercayaan Gejala ini" />
+
+        <CheckBox
+            android:id="@+id/checkBox22"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Telinga nyeri saat mengunyah" />
+
+        <AutoCompleteTextView
+            android:id="@+id/autoCompleteTextView22"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="20sp"
+            android:hint="Masukan Nilai Kepercayaan Gejala ini" />
+
+        <CheckBox
+            android:id="@+id/checkBox23"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Telinga berdengung" />
+
+        <AutoCompleteTextView
+            android:id="@+id/autoCompleteTextView23"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="20sp"
+            android:hint="Masukan Nilai Kepercayaan Gejala ini" />
+
+        <CheckBox
+            android:id="@+id/checkBox24"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Tidur mendengkur" />
+
+        <AutoCompleteTextView
+            android:id="@+id/autoCompleteTextView24"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="20sp"
+            android:hint="Masukan Nilai Kepercayaan Gejala ini" />
+
+
 
         <Button
-            android:id="@+id/btn_diagnosa"
+            android:id="@+id/btnDiagnosa"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Cek Diagnosa" />
+            android:background="@android:color/black"
+            android:text="Cek Diagnosa"
+            android:textAlignment="center"
+            android:textSize="24sp"
+            android:textStyle="bold" />
 
         <TextView
-            android:textSize="25sp"
-            android:textStyle="bold"
-            android:id="@+id/tv_result"
+            android:id="@+id/tvResult"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Result"
             android:textAlignment="center"
-            android:layout_marginBottom="20dp"/>
-
+            android:textSize="30sp"
+            android:textStyle="bold" />
     </LinearLayout>
 </ScrollView>
