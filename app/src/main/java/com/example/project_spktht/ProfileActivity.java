@@ -1,5 +1,6 @@
 package com.example.project_spktht;
 
+import androidx.activity.result.ActivityResult;
 import androidx.activity.result.ActivityResultCallback;
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
@@ -49,7 +50,7 @@ import java.util.UUID;
 
 public class ProfileActivity extends AppCompatActivity {
     TextView profileName, profileEmail, profilePhone;
-    Button editProfile, resetPassword, backToHome, logoutButton;
+    Button editProfile, resetPassword, backToHome, logoutButton, changeProfile;
     ImageView profileImg;
     FirebaseAuth firebaseAuth;
     FirebaseFirestore fireStore;
@@ -57,6 +58,7 @@ public class ProfileActivity extends AppCompatActivity {
     FirebaseUser user;
     FirebaseStorage storage;
     Uri imageUri;
+    private String profileImageURL;
 
 
 
@@ -69,10 +71,10 @@ public class ProfileActivity extends AppCompatActivity {
         profileName = findViewById(R.id.profileName);
         profileEmail = findViewById(R.id.profileEmail);
         profilePhone = findViewById(R.id.profilePhone);
-        editProfile = findViewById(R.id.editButton);
         resetPassword = findViewById(R.id.changePassword);
         backToHome = findViewById(R.id.backToHomeBtn);
         logoutButton = findViewById(R.id.logoutButton);
+        changeProfile = findViewById(R.id.changeProfile);
 
         firebaseAuth = FirebaseAuth.getInstance();
         fireStore = FirebaseFirestore.getInstance();
@@ -81,20 +83,11 @@ public class ProfileActivity extends AppCompatActivity {
         userId = firebaseAuth.getCurrentUser().getUid();
         user = firebaseAuth.getCurrentUser();
 
-
-        //run the below method on ImageView click
-        profileImg.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                mGetContent.launch("image/*");
-                //the image is selected succesfully from the gallery and next to upload it to teh firebase storage
-            }
-        });
+        retrieveAndDisplayImage();
 
         editProfile.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //upload image on button click
                 uploadImage();
             }
         });
@@ -160,8 +153,60 @@ public class ProfileActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
+        //run the below method on changeProfile click
+        changeProfile.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent openGalleryIntent = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+                startForResult.launch(openGalleryIntent);
+                //the image is selected succesfully from the gallery and next to upload it to teh firebase storage
+            }
+        });
+
     }
 
+    // Store the profile image URL in Firestore
+    private void storeImageURL(String imageURL) {
+        DocumentReference documentReference = fireStore.collection("users").document(userId);
+        documentReference.update("profileImageURL", imageURL)
+                .addOnSuccessListener(new OnSuccessListener<Void>() {
+                    private String profileImageURL;
+
+                    @Override
+                    public void onSuccess(Void unused) {
+                        Log.d("TAG", "Profile image URL stored successfully");
+                        this.profileImageURL = imageURL; // Update the local variable
+                    }
+                })
+                .addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        Log.e("TAG", "Error storing profile image URL", e);
+                    }
+                });
+    }
+
+    // Retrieve the profile image URL from Firestore and display it
+    private void retrieveAndDisplayImage() {
+        DocumentReference documentReference = fireStore.collection("users").document(userId);
+        documentReference.get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+            private String profileImageURL;
+
+            @Override
+            public void onSuccess(DocumentSnapshot documentSnapshot) {
+                if (documentSnapshot.exists()) {
+                    String imageURL = documentSnapshot.getString("profileImageURL");
+                    if (imageURL != null) {
+                        Picasso.get().load(imageURL).into(profileImg);
+                        this.profileImageURL = imageURL; // Update the local variable
+                    }
+                }
+            }
+        });
+    }
+
+    //store profile image to firebase
     private void uploadImage() {
         if(imageUri != null){
             StorageReference reference = storage.getReference().child("image/"+ UUID.randomUUID().toString());
@@ -170,23 +215,31 @@ public class ProfileActivity extends AppCompatActivity {
                 @Override
                 public void onComplete(@NonNull Task<UploadTask.TaskSnapshot> task) {
                     if(task.isSuccessful()){
-                        //image successfully
-                        Toast.makeText(ProfileActivity.this, "Profile Image berhasil di update!", Toast.LENGTH_SHORT).show();
-                    }else{
+                        reference.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+                            @Override
+                            public void onSuccess(Uri uri) {
+                                String imageURL = uri.toString();
+                                storeImageURL(imageURL); // Store the URL in Firestore
+                            }
+                        });
+                    } else {
                         Toast.makeText(ProfileActivity.this, task.getException().getMessage(), Toast.LENGTH_SHORT).show();
                     }
                 }
             });
         }
     }
-    ActivityResultLauncher<String> mGetContent = registerForActivityResult(new ActivityResultContracts.GetContent(), new ActivityResultCallback<Uri>() {
+    ActivityResultLauncher<Intent> startForResult = registerForActivityResult(new ActivityResultContracts.StartActivityForResult(), new ActivityResultCallback<ActivityResult>() {
         @Override
-        public void onActivityResult(Uri result) {
+        public void onActivityResult(ActivityResult result) {
             //this is the result for uri
-            if (result != null){
-                profileImg.setImageURI(result);
-                //result will be set in imageUri
-                imageUri = result;
+            if (result != null && result.getResultCode() == RESULT_OK){
+                Intent data = result.getData();
+                if(data != null && data.getData() != null ){
+                    imageUri = data.getData();
+                    Picasso.get().load(imageUri).into(profileImg);
+
+                }
             }
         }
     });
