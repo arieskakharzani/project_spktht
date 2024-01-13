@@ -18,27 +18,12 @@ import com.google.firebase.messaging.FirebaseMessaging;
 
 public class MainActivity extends AppCompatActivity {
 
-    CardView mcGejala, mcDiagnosa, mcTentang, mcKonsul, mcPenyakit, mcAlergi, mcPengingat, mcProfile;
+    CardView mcGejala, mcDiagnosa, mcTentang, mcKonsul, mcPenyakit, mcAlergi, mcProfile;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
-        FirebaseMessaging.getInstance().getToken()
-                .addOnCompleteListener(new OnCompleteListener<String>() {
-                    @Override
-                    public void onComplete(@NonNull Task<String> task) {
-                        if (!task.isSuccessful()) {
-                            Log.w(TAG, "Fetching FCM registration token failed", task.getException());
-                            return;
-                        }
-
-                        // Get new FCM registration token
-                        String token = task.getResult();
-                        System.out.println("TOKEN "+ token);
-                    }
-                });
 
         mcGejala = findViewById(R.id.mcGejala);
         mcDiagnosa = findViewById(R.id.mcDiagnosa);
@@ -46,8 +31,9 @@ public class MainActivity extends AppCompatActivity {
         mcKonsul = findViewById(R.id.mcKonsul);
         mcPenyakit = findViewById(R.id.mcPenyakit);
         mcAlergi = findViewById(R.id.mcAlergi);
-        mcPengingat = findViewById(R.id.mcPengingat);
         mcProfile = findViewById(R.id.mcProfile);
+
+        getFCMToken();
 
         mcGejala.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -97,14 +83,6 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        mcPengingat.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(MainActivity.this, PengingatActivity.class);
-                startActivity(intent);
-            }
-        });
-
         mcProfile.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -113,5 +91,16 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+    }
+    private void getFCMToken() {
+        FirebaseMessaging.getInstance().getToken().addOnCompleteListener(new OnCompleteListener<String>() {
+            @Override
+            public void onComplete(@NonNull Task<String> task) {
+                if (task.isSuccessful()) {
+                    String token = task.getResult();
+                    Log.d("My Token", "onComplete: " + token); //copy token from Log Cat
+                }
+            }
+        });
     }
 }
