@@ -50,7 +50,7 @@ import java.util.UUID;
 
 public class ProfileActivity extends AppCompatActivity {
     TextView profileName, profileEmail, profilePhone;
-    Button editProfile, resetPassword, backToHome, logoutButton, changeProfile;
+    Button resetPassword, backToHome, logoutButton, changeProfile, saveProfile;
     ImageView profileImg;
     FirebaseAuth firebaseAuth;
     FirebaseFirestore fireStore;
@@ -75,6 +75,7 @@ public class ProfileActivity extends AppCompatActivity {
         backToHome = findViewById(R.id.backToHomeBtn);
         logoutButton = findViewById(R.id.logoutButton);
         changeProfile = findViewById(R.id.changeProfile);
+        saveProfile = findViewById(R.id.saveProfile);
 
         firebaseAuth = FirebaseAuth.getInstance();
         fireStore = FirebaseFirestore.getInstance();
@@ -85,23 +86,20 @@ public class ProfileActivity extends AppCompatActivity {
 
         retrieveAndDisplayImage();
 
-        editProfile.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                uploadImage();
-            }
-        });
-
         DocumentReference documentReference = fireStore.collection("users").document(userId);
         documentReference.addSnapshotListener(this, new EventListener<DocumentSnapshot>() {
             @Override
             public void onEvent(@Nullable DocumentSnapshot documentSnapshot, @Nullable FirebaseFirestoreException error) {
-                if (documentSnapshot.exists()) {
+                if (error != null) {
+                    Log.w("TAG", "Listen failed.", error);
+                    return;
+                }
+                if (documentSnapshot != null && documentSnapshot.exists()) {
                     profileName.setText(documentSnapshot.getString("name"));
                     profileEmail.setText(documentSnapshot.getString("email"));
                     profilePhone.setText(documentSnapshot.getString("phone"));
                 } else {
-                    Log.d("tag", "onEvent: Document do not exists");
+                    Log.d("TAG", "Document does not exists");
                 }
             }
         });
@@ -164,19 +162,55 @@ public class ProfileActivity extends AppCompatActivity {
             }
         });
 
+        saveProfile.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (imageUri != null) {
+                    uploadImageToFirebase();
+                } else {
+                    Toast.makeText(ProfileActivity.this, "Pilih gambar terlebih dahulu", Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
+
     }
 
     // Store the profile image URL in Firestore
+    private void uploadImageToFirebase() {
+        final ProgressDialog progressDialog = new ProgressDialog(this);
+        progressDialog.setTitle("Saving...");
+        progressDialog.show();
+
+        StorageReference profileImageRef = storage.getReference().child("profileImages").child(userId);
+        profileImageRef.putFile(imageUri)
+                .addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+                    @Override
+                    public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                        progressDialog.dismiss();
+                        profileImageRef.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+                            @Override
+                            public void onSuccess(Uri uri) {
+                                profileImageURL = uri.toString();
+                                storeImageURL(profileImageURL);
+                            }
+                        });
+                    }
+                })
+                .addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        progressDialog.dismiss();
+                        Toast.makeText(ProfileActivity.this, "Upload failed", Toast.LENGTH_SHORT).show();
+                    }
+                });
+    }
     private void storeImageURL(String imageURL) {
         DocumentReference documentReference = fireStore.collection("users").document(userId);
         documentReference.update("profileImageURL", imageURL)
                 .addOnSuccessListener(new OnSuccessListener<Void>() {
-                    private String profileImageURL;
-
                     @Override
                     public void onSuccess(Void unused) {
                         Log.d("TAG", "Profile image URL stored successfully");
-                        this.profileImageURL = imageURL; // Update the local variable
                     }
                 })
                 .addOnFailureListener(new OnFailureListener() {
@@ -191,43 +225,16 @@ public class ProfileActivity extends AppCompatActivity {
     private void retrieveAndDisplayImage() {
         DocumentReference documentReference = fireStore.collection("users").document(userId);
         documentReference.get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
-            private String profileImageURL;
-
             @Override
             public void onSuccess(DocumentSnapshot documentSnapshot) {
                 if (documentSnapshot.exists()) {
                     String imageURL = documentSnapshot.getString("profileImageURL");
                     if (imageURL != null) {
                         Picasso.get().load(imageURL).into(profileImg);
-                        this.profileImageURL = imageURL; // Update the local variable
                     }
                 }
             }
         });
-    }
-
-    //store profile image to firebase
-    private void uploadImage() {
-        if(imageUri != null){
-            StorageReference reference = storage.getReference().child("image/"+ UUID.randomUUID().toString());
-            //creating a reference to store the image in firebase storage
-            reference.putFile(imageUri).addOnCompleteListener(new OnCompleteListener<UploadTask.TaskSnapshot>() {
-                @Override
-                public void onComplete(@NonNull Task<UploadTask.TaskSnapshot> task) {
-                    if(task.isSuccessful()){
-                        reference.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
-                            @Override
-                            public void onSuccess(Uri uri) {
-                                String imageURL = uri.toString();
-                                storeImageURL(imageURL); // Store the URL in Firestore
-                            }
-                        });
-                    } else {
-                        Toast.makeText(ProfileActivity.this, task.getException().getMessage(), Toast.LENGTH_SHORT).show();
-                    }
-                }
-            });
-        }
     }
     ActivityResultLauncher<Intent> startForResult = registerForActivityResult(new ActivityResultContracts.StartActivityForResult(), new ActivityResultCallback<ActivityResult>() {
         @Override
@@ -246,8 +253,9 @@ public class ProfileActivity extends AppCompatActivity {
 
     public void logout (View view){
         FirebaseAuth.getInstance().signOut();
-        startActivity(new Intent(getApplicationContext(), LoginActivity.class));
-        finish();
+        Intent intent = new Intent(ProfileActivity.this, LoginActivity.class);
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK); // Clear back stack
+        startActivity(intent);
     }
 
 }
